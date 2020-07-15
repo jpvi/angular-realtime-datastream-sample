@@ -1,0 +1,48 @@
+<div class="panel-header panel-header-sm">
+    
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div *ngFor="let s of this.symbols()" class="col-md-6">
+      <ng-container *ngIf="tradeTypesBySymbol(s)">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-category">{{ s }} Stats</h4>
+            <h4 class="card-title">Breakdown</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    Trade Type
+                  </th>
+                  <th>
+                    No. of bids
+                  </th>
+                  <th class="text-right">
+                    Sum of bids
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of tradeTypesBySymbol(s)">
+                    <td>
+                      {{ t }}
+                    </td>
+                    <td>
+                      {{ this.totalBidsBySymbolAndTradeType(s, t) }}
+                    </td>
+                    <td class="text-right">
+                      {{ this.bidsSumBySymbolAndTradeType(s, t) | currency }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
